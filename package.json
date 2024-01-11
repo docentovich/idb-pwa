@@ -1,5 +1,5 @@
 {
-  "name": "angular16",
+  "name": "idb-pwa",
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
@@ -7,7 +7,7 @@
     "start:nodemon": "nodemon server/index.js",
     "start:serve:all": "nodemon server | ng serve",
     "//easy-run": "echo 'npm start:dist:all'",
-    "start:dist:all": "ng build --prod & npx http-server -p 8081 -c-1 dist/angular16 | nodemon server",
+    "start:dist:all": "ng build --prod & npx http-server -p 8081 -c-1 dist/angular16 & nodemon server",
     "start:dist:prod": "ng build --prod & npx http-server -p 8081 -c-1 dist/angular16",
     "start:dist:dev": "ng build --configuration=development & npx http-server -p 8081 -c-1 dist/angular16",
     "build": "ng build",

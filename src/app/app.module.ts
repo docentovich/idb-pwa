@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 
-debugger;
 export class HttpCacheEntry {
   constructor(
       public id: number,
@@ -21,7 +20,6 @@ const db = new AsyncDatabase(new IndexedDB('cache'))
 const collection = db.collection('CACHE') as unknown as AsyncCollection<HttpCacheEntry>;
 
 export const fetchCached = async (resource: RequestInfo, config = { method: 'GET' }) => {
-  debugger;
   console.log(resource, config);
   const url = typeof resource === 'string' ? resource : resource.url;
   const requestString = (config.method ?? 'GET') + url
