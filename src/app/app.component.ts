@@ -23,7 +23,15 @@ export class AppComponent implements OnInit {
     //       this.data = data
     //     })
 
-    fetchCached('//localhost:8080/api/todo-list', { method: 'POST' })
+    fetchCached(
+        'https://jsonplaceholder.typicode.com/posts',
+        { method: 'POST',
+          body: JSON.stringify({
+            title: 'foo',
+            body: 'bar',
+            userId: 1,
+          })
+        })
         .then((data) => this.data = data)
   }
 

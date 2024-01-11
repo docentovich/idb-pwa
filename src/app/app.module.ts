@@ -19,10 +19,10 @@ export class HttpCacheEntry {
 const db = new AsyncDatabase(new IndexedDB('cache'))
 const collection = db.collection('CACHE') as unknown as AsyncCollection<HttpCacheEntry>;
 
-export const fetchCached = async (resource: RequestInfo, config = { method: 'GET' }) => {
-  console.log(resource, config);
+export const fetchCached = async (resource: RequestInfo, { method = 'GET', ...restConfig }: RequestInit = {}) => {
+  console.log(resource, method);
   const url = typeof resource === 'string' ? resource : resource.url;
-  const requestString = (config.method ?? 'GET') + url
+  const requestString = (method ?? 'GET') + url
 
   const cached = await collection.get((entry) => entry.url === requestString);
 
@@ -30,7 +30,7 @@ export const fetchCached = async (resource: RequestInfo, config = { method: 'GET
     return cached.value;
   }
 
-  const response = await (await fetch(resource, config)).json();
+  const response = await (await fetch(resource, { method, ...restConfig })).json();
   const entry = new HttpCacheEntry(1, requestString, response);
   await collection.set(entry);
 
