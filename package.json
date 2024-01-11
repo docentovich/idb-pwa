@@ -3,7 +3,13 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start:serve": "ng serve",
+    "start:nodemon": "nodemon server/index.js",
+    "start:serve:all": "nodemon server | ng serve",
+    "//easy-run": "echo 'npm start:dist:all'",
+    "start:dist:all": "ng build --prod & npx http-server -p 8081 -c-1 dist/angular16 | nodemon server",
+    "start:dist:prod": "ng build --prod & npx http-server -p 8081 -c-1 dist/angular16",
+    "start:dist:dev": "ng build --configuration=development & npx http-server -p 8081 -c-1 dist/angular16",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -19,6 +25,10 @@
     "@angular/platform-browser": "~12.2.0",
     "@angular/platform-browser-dynamic": "~12.2.0",
     "@angular/router": "~12.2.0",
+    "@angular/service-worker": "~12.2.0",
+    "@ezzabuzaid/document-storage": "^0.8.0",
+    "@schematics/angular": "^12.2.18",
+    "cors": "^2.8.5",
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
@@ -37,12 +47,14 @@
     "@typescript-eslint/eslint-plugin": "4.28.2",
     "@typescript-eslint/parser": "4.28.2",
     "eslint": "^7.26.0",
+    "express": "^4.18.2",
     "jasmine-core": "~3.8.0",
     "karma": "~6.3.0",
     "karma-chrome-launcher": "~3.1.0",
     "karma-coverage": "~2.0.3",
     "karma-jasmine": "~4.0.0",
     "karma-jasmine-html-reporter": "~1.7.0",
+    "nodemon": "^3.0.2",
     "typescript": "~4.3.5"
   }
 }
